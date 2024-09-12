@@ -2,8 +2,6 @@ import fs from "fs";
 
 const matches=JSON.parse(fs.readFileSync("../data/matches.json","utf-8"));
 
-console.log(matches);
-
 export function matchesPerYear(matches){
     let resultObj={};
 
@@ -21,7 +19,7 @@ export function matchesPerYear(matches){
 }
 
 function dumpJsonToFile(result){
-    const jsonRes=JSON.stringify(result);
+    const jsonRes=JSON.stringify(result,null,2);
     fs.writeFileSync("../public/output/matchesPerYear.json",jsonRes,"utf-8");
     
 

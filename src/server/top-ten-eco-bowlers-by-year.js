@@ -36,6 +36,7 @@ export function topTenEcoBowlersByYear(matches,deliveries,inputYear=2015){
             const wideRuns=deliveries[index]["wide_runs"];
             const noBallRuns=deliveries[index]["noball_runs"];
             const batsmanRuns=deliveries[index]["batsman_runs"];
+            const bye=deliveries[index][""];
 
             //checking for wide, noball and batman runs
             if(bowlersList.hasOwnProperty(bowler) && matchIdList.includes(deliveryMatchId)){
@@ -51,6 +52,8 @@ export function topTenEcoBowlersByYear(matches,deliveries,inputYear=2015){
                     bowlersList[bowler]["runs_conceded"]+=parseInt(batsmanRuns);                    //checking for batsman runs
                     bowlersList[bowler]["num_balls"]+=1;
                 
+                }else{
+                    bowlersList[bowler]["num_balls"]+=1;
                 }
             }
             
@@ -70,6 +73,7 @@ export function topTenEcoBowlersByYear(matches,deliveries,inputYear=2015){
 
             filteredList.push(bowlerStats);
         }
+        //filtering top 10 by economy
         const resultArr=filteredList.sort((bowler1,bowler2)=>bowler1["economy"]-bowler2["economy"]).slice(0,10);
         return resultArr;
     

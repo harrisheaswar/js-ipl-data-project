@@ -1,42 +1,42 @@
 [
   {
-    "bowler": "V Kohli",
-    "economy": 6.666666666666667
-  },
-  {
     "bowler": "RN ten Doeschate",
-    "economy": 8
+    "economy": 4
   },
   {
     "bowler": "J Yadav",
-    "economy": 8.285714285714285
+    "economy": 4.142857142857142
   },
   {
-    "bowler": "M Vijay",
-    "economy": 8.399999999999999
+    "bowler": "V Kohli",
+    "economy": 5.454545454545454
   },
   {
-    "bowler": "DJG Sammy",
-    "economy": 10
+    "bowler": "R Ashwin",
+    "economy": 5.846153846153846
+  },
+  {
+    "bowler": "S Nadeem",
+    "economy": 6.142857142857142
   },
   {
     "bowler": "Parvez Rasool",
-    "economy": 10.333333333333334
+    "economy": 6.200000000000001
   },
   {
     "bowler": "MC Henriques",
-    "economy": 10.533333333333333
+    "economy": 6.319999999999999
   },
   {
-    "bowler": "Yuvraj Singh",
-    "economy": 10.8
+    "bowler": "Z Khan",
+    "economy": 6.455172413793103
   },
   {
-    "bowler": "JP Duminy",
-    "economy": 11.117647058823529
+    "bowler": "MA Starc",
+    "economy": 6.720930232558139
   },
   {
-    "bowler": "CH Gayle",
-    "economy": 11.25
+    "bowler": "GB Hogg",
+    "economy": 6.857142857142857
   }
 ]

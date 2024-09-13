@@ -8,7 +8,7 @@ export function extraRunsConcededByYear(matches,deliveries,year=2016){
 
     const matchIds=[];
     const resultObj={};
-    //pushing matchIds in the year 2016 into an array. Saving team names as keys in resultObj
+    //save the match ids in an array where season is 2015. Saving team names as keys in resultObj
         for(let index=0;index<matches.length;index++){
            const team1=matches[index]["team1"];
            const team2=matches[index]["team2"];

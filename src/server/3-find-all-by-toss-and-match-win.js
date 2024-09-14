@@ -15,7 +15,7 @@ export function findAllByTossAndMatchWin(matches){
 
         const team1=matches[index]["team1"];
         const team2=matches[index]["team2"];
-            
+           //saving all teams as keys in the tossAndMatchWinList Object
             if(!tossAndMatchWinList.hasOwnProperty(team1)){
                 tossAndMatchWinList[team1]={
                     "tossAndMatchWinCount": 0

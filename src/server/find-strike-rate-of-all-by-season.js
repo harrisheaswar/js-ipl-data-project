@@ -9,7 +9,7 @@ export function findStrikeRateOfAllBySeason(){
     let idToYear={};
     let yearAndPlayerData={};
 
-        //mapping all the year with ids
+        //mapping all the ids with years
         for(let index=0;index<matches.length;index++){
             let year=matches[index]["season"];
             let matchId=matches[index]["id"];
@@ -26,6 +26,7 @@ export function findStrikeRateOfAllBySeason(){
         for(let index=0;index<deliveries.length;index++){
             let deliveryId=deliveries[index]["match_id"];
             let batsman=deliveries[index]["batsman"];
+            
             let totalRuns=deliveries[index]["total_runs"];
             let wideRuns=deliveries[index]["wide_runs"];
 

@@ -80,6 +80,10 @@ export function highestNumOfDismissals(deliveries){
     return resultObj;
 }
 
+
+
+
+//write and dump to .json
 function dumpJsonToFile(result){
     const jsonRes=JSON.stringify(result,null,2);
     fs.writeFileSync("../public/output/highestNumOfDismissal.json",jsonRes,"utf-8");

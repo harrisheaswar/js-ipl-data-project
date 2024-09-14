@@ -15,7 +15,7 @@ export function findAllByTossAndMatchWin(matches){
 
         const team1=matches[index]["team1"];
         const team2=matches[index]["team2"];
-
+            
             if(!tossAndMatchWinList.hasOwnProperty(team1)){
                 tossAndMatchWinList[team1]={
                     "tossAndMatchWinCount": 0
@@ -28,7 +28,7 @@ export function findAllByTossAndMatchWin(matches){
             }
 
         
-                if(tossWinner!=undefined && matchWinner!=undefined){
+                if(tossWinner!="" && matchWinner!=""){
                     if(tossWinner===matchWinner && tossAndMatchWinList.hasOwnProperty(matchWinner)){
                         tossAndMatchWinList[matchWinner]["tossAndMatchWinCount"]+=1;
                     }
@@ -39,11 +39,14 @@ export function findAllByTossAndMatchWin(matches){
     return tossAndMatchWinList;
 }
 
+
+
+
+//write and dump to .json
 function dumpJsonToFile(result){
     const jsonResult=JSON.stringify(result,null,2);
     fs.writeFileSync("../public/output/findAllByTossAndMatchWin.json",jsonResult,"utf-8");
 }
-
 
 
 function runAndDump(){

@@ -40,12 +40,22 @@ export function extraRunsConcededByYear(matches,deliveries,year=2016){
                     }
                 }
             }
+            
+        }
+
+        for(let team in resultObj){
+            if(resultObj[team]===0){
+                resultObj[team]="Did not play IPL that year";
+            }
         }
         
         return resultObj;
     
 }
 
+
+
+//write and dump to .json
 function dumpJSONToFile(extraRunsResult1){
     const jsonRes=JSON.stringify(extraRunsResult1,null,2);
 

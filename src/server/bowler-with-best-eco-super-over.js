@@ -11,7 +11,7 @@ export function bowlerWithBestEcoSuperOver(deliveries){
     //saving bowlers(super-over) as keys and storing number of runs conceded and number of balls bowled
         for(let index=0;index<deliveries.length;index++){
             let bowler=deliveries[index]["bowler"];
-            
+            //checking if it is a super over and the bowler is not present in list. Else it checks for runs and balls bowled
             if(deliveries[index]["is_super_over"]==="1" && !bowlerList.hasOwnProperty(bowler)){
                 bowlerList[bowler]={
                     total_runs:0,
@@ -37,9 +37,10 @@ export function bowlerWithBestEcoSuperOver(deliveries){
             }
         }
 
-    //calculating best economy from all the super-over bowlers 
+    //calculating the best economy from all the super-over bowlers 
     let bestBowler;
     let bestEconomy=Number.MAX_SAFE_INTEGER;
+
         for(let bowler in bowlerList){
             //economy is total_run/total_overs OR (total_runs/total_balls)*6
             let economy=(bowlerList[bowler]["total_runs"]/bowlerList[bowler]["total_balls"])*6;
@@ -56,6 +57,7 @@ export function bowlerWithBestEcoSuperOver(deliveries){
 
 }
 
+//write and dump to .json
 function dumpJSONToFile(bowlerWithBestEcoSuperOver1){
     const jsonRes=JSON.stringify(bowlerWithBestEcoSuperOver1,null,2);
 

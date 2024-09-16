@@ -26,7 +26,7 @@ export function findStrikeRateOfAllBySeason(){
         for(let index=0;index<deliveries.length;index++){
             let deliveryId=deliveries[index]["match_id"];
             let batsman=deliveries[index]["batsman"];
-            
+
             let totalRuns=deliveries[index]["total_runs"];
             let wideRuns=deliveries[index]["wide_runs"];
 
@@ -82,6 +82,10 @@ export function findStrikeRateOfAllBySeason(){
 }
 
 
+
+
+
+//write and dump to .json
 function dumpJsonToFile(result){
     const jsonRes=JSON.stringify(result,null,2);
     fs.writeFileSync("../public/output/findStrikeRateOfAllBySeason.json",jsonRes,"utf-8");

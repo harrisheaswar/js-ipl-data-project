@@ -1,44 +1,16 @@
 {
-  "Sunrisers Hyderabad": {
-    "tossAndMatchWinCount": 17
-  },
-  "Royal Challengers Bangalore": {
-    "tossAndMatchWinCount": 35
-  },
-  "Mumbai Indians": {
-    "tossAndMatchWinCount": 48
-  },
-  "Rising Pune Supergiant": {
-    "tossAndMatchWinCount": 5
-  },
-  "Gujarat Lions": {
-    "tossAndMatchWinCount": 10
-  },
-  "Kolkata Knight Riders": {
-    "tossAndMatchWinCount": 44
-  },
-  "Kings XI Punjab": {
-    "tossAndMatchWinCount": 28
-  },
-  "Delhi Daredevils": {
-    "tossAndMatchWinCount": 33
-  },
-  "Chennai Super Kings": {
-    "tossAndMatchWinCount": 42
-  },
-  "Rajasthan Royals": {
-    "tossAndMatchWinCount": 34
-  },
-  "Deccan Chargers": {
-    "tossAndMatchWinCount": 19
-  },
-  "Kochi Tuskers Kerala": {
-    "tossAndMatchWinCount": 4
-  },
-  "Pune Warriors": {
-    "tossAndMatchWinCount": 3
-  },
-  "Rising Pune Supergiants": {
-    "tossAndMatchWinCount": 3
-  }
+  "Rising Pune Supergiant": 5,
+  "Kolkata Knight Riders": 44,
+  "Kings XI Punjab": 28,
+  "Royal Challengers Bangalore": 35,
+  "Sunrisers Hyderabad": 17,
+  "Mumbai Indians": 48,
+  "Gujarat Lions": 10,
+  "Delhi Daredevils": 33,
+  "Chennai Super Kings": 42,
+  "Rajasthan Royals": 34,
+  "Deccan Chargers": 19,
+  "Kochi Tuskers Kerala": 4,
+  "Pune Warriors": 3,
+  "Rising Pune Supergiants": 3
 }

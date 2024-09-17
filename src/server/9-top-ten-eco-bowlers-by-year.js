@@ -6,10 +6,11 @@ const deliveries = JSON.parse(
 );
 
 export function topTenEcoBowlersByYear(matches, deliveries, inputYear = 2015) {
-  const idArr = matches.filter((match) => parseInt(match["season"]) === inputYear)
+  const idArr = matches
+    .filter((match) => parseInt(match["season"]) === inputYear)
     .map((match) => match["id"]);
 
-    const set=new Set(idArr);
+  const set = new Set(idArr);
 
   const resultObj = deliveries.reduce((resObj, delivery) => {
     let bowler = delivery["bowler"];
@@ -27,8 +28,7 @@ export function topTenEcoBowlersByYear(matches, deliveries, inputYear = 2015) {
       };
     }
 
-    if ( set.has(matchId) && resObj.hasOwnProperty(bowler)) {
-
+    if (set.has(matchId) && resObj.hasOwnProperty(bowler)) {
       if (wideRuns != "" && parseInt(wideRuns) > 0) {
         resObj[bowler]["total_runs"] += parseInt(wideRuns);
       } else if (noBallRuns != "" && parseInt(noBallRuns) > 0) {
@@ -52,7 +52,7 @@ export function topTenEcoBowlersByYear(matches, deliveries, inputYear = 2015) {
 
     delete resultObj[name]["total_runs"];
     delete resultObj[name]["total_balls"];
-    
+
     resultObj[name]["economy"] = economy;
   }
 

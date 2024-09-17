@@ -5,81 +5,66 @@ const deliveries = JSON.parse(
 );
 const matches = JSON.parse(fs.readFileSync("../data/matches.json", "utf-8"));
 
-export function findStrikeRateOfAllBySeason() {
-  let strikeByYearObj = {};
-  let idToYear = {};
-  let yearAndPlayerData = {};
+export function findStrikeRateOfAllBySeason(matches, deliveries) {
+  const idToYearMap = matches.reduce((idObj, match) => {
+    let id = match["id"];
+    let year = match["season"];
 
-  //mapping all the ids with years
-  for (let index = 0; index < matches.length; index++) {
-    let year = matches[index]["season"];
-    let matchId = matches[index]["id"];
+    idObj[id] = year;
 
-    if (year != undefined && !idToYear.hasOwnProperty(year)) {
-      if (matchId != undefined) {
-        idToYear[matchId] = year;
-      }
-    }
-  }
+    return idObj;
+  }, {});
 
-  for (let index = 0; index < deliveries.length; index++) {
-    let deliveryId = deliveries[index]["match_id"];
-    let batsman = deliveries[index]["batsman"];
+  const batsmanObj = deliveries.reduce((resObj, delivery) => {
+    let id = delivery["match_id"];
+    let year = idToYearMap[id];
+    let batsman = delivery["batsman"];
 
-    let totalRuns = deliveries[index]["total_runs"];
-    let wideRuns = deliveries[index]["wide_runs"];
-
-    let batsmanRuns = deliveries[index]["batsman_runs"];
-    let noBallRuns = deliveries[index]["no_ballRuns"];
-    let year = idToYear[deliveryId];
-
-    if (!yearAndPlayerData.hasOwnProperty(year)) {
-      yearAndPlayerData[year] = {};
+    if (!resObj.hasOwnProperty(year)) {
+      resObj[year] = {};
     }
 
-    if (
-      batsman != undefined &&
-      !yearAndPlayerData[year].hasOwnProperty(batsman)
-    ) {
-      yearAndPlayerData[year][batsman] = {
+    if (!resObj[year].hasOwnProperty(batsman)) {
+      resObj[year][batsman] = {
         total_runs: 0,
         total_balls: 0,
       };
-    }
-    if (batsmanRuns != undefined && parseInt(batsmanRuns) > 0) {
-      yearAndPlayerData[year][batsman]["total_runs"] += parseInt(batsmanRuns);
-      yearAndPlayerData[year][batsman]["total_balls"] += 1;
-    } else if (noBallRuns != undefined && parseInt(noBallRuns) > 1) {
-      yearAndPlayerData[year][batsman]["total_runs"] +=
-        parseInt(noBallRuns) - 1;
-    } else if (
-      totalRuns != undefined &&
-      parseInt(totalRuns) > 0 &&
-      parseInt(noBallRuns) === 0 &&
-      parseInt(wideRuns) === 0
-    ) {
-      yearAndPlayerData[year][batsman]["total_balls"] += 1;
-    }
-  }
 
-  for (let year in yearAndPlayerData) {
-    strikeByYearObj[year] = {};
-    for (let player in yearAndPlayerData[year]) {
-      let totalRuns = yearAndPlayerData[year][player]["total_runs"];
-      let totalBalls = yearAndPlayerData[year][player]["total_balls"];
-      let strikeRate;
+      const runs = delivery["batsman_runs"];
 
-      if (totalBalls !== 0) {
-        strikeRate = (totalRuns / totalBalls) * 100;
-      } else {
-        strikeRate = 0;
+      if (runs != "") {
+        resObj[year][batsman]["total_runs"] += parseInt(runs);
+        resObj[year][batsman]["total_balls"] += 1;
       }
+    } else {
+      const runs = delivery["batsman_runs"];
 
-      strikeByYearObj[year][player] = strikeRate;
+      if (runs != "") {
+        resObj[year][batsman]["total_runs"] += parseInt(runs);
+        resObj[year][batsman]["total_balls"] += 1;
+      }
+    }
+
+    return resObj;
+  }, {});
+
+  let resultObj = {};
+
+  for (let year in batsmanObj) {
+    let player;
+    let strike = 0;
+    resultObj[year] = {};
+    for (let name in batsmanObj[year]) {
+      player = name;
+      strike =
+        (batsmanObj[year][name]["total_runs"] /
+          batsmanObj[year][name]["total_balls"]) *
+        100;
+      resultObj[year][player] = strike;
     }
   }
 
-  return strikeByYearObj;
+  return resultObj;
 }
 
 //write and dump to .json
@@ -93,7 +78,10 @@ function dumpJsonToFile(result) {
 }
 
 function runAndDumpRes() {
-  const findStrikeRateOfAllBySeason1 = findStrikeRateOfAllBySeason(matches);
+  const findStrikeRateOfAllBySeason1 = findStrikeRateOfAllBySeason(
+    matches,
+    deliveries
+  );
 
   dumpJsonToFile(findStrikeRateOfAllBySeason1);
 }

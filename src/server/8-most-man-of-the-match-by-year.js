@@ -1,64 +1,58 @@
 import fs from "fs";
 
-const matches=JSON.parse(fs.readFileSync("../data/matches.json","utf-8"));
+const matches = JSON.parse(fs.readFileSync("../data/matches.json", "utf-8"));
 
+export function mostManOfTheMatchYearWise(matches) {
+  let manOfMatchList = matches
+    .filter((match) => match["player_of_match"] != "")
+    .reduce((resObj, match) => {
+      let year = match["season"];
+      let manOfMatch = match["player_of_match"];
 
-export function mostManOfTheMatchYearWise(matches){
+      if (!resObj.hasOwnProperty(year)) {
+        resObj[year] = {};
+      }
 
-    let manOfTheMatchList={};
-    let resultObj={};
+      if (!resObj[year].hasOwnProperty(manOfMatch)) {
+        resObj[year][manOfMatch] = 1;
+      } else {
+        resObj[year][manOfMatch] += 1;
+      }
 
-    for(let index=0;index<matches.length;index++){
-        const year=matches[index]["season"];
-        const manOfMatch=matches[index]["player_of_match"];
-        
-            if(!manOfTheMatchList.hasOwnProperty(year)){
-                
-                manOfTheMatchList[year]={};
-            }
+      return resObj;
+    }, {});
 
-                if(manOfMatch!=undefined && !manOfTheMatchList[year].hasOwnProperty(manOfMatch)){
-                    manOfTheMatchList[year][manOfMatch]=1;
-                }else if(manOfMatch!=undefined){
-                    manOfTheMatchList[year][manOfMatch]+=1;
-                }    
-
+  let resultList = {};
+  for (let year in manOfMatchList) {
+    let player;
+    let max = 0;
+    resultList[year] = {};
+    for (let name in manOfMatchList[year]) {
+      if (manOfMatchList[year][name] > max) {
+        max = manOfMatchList[year][name];
+        player = name;
+      }
     }
+    resultList[year][player] = max;
+  }
 
-    for(let year in manOfTheMatchList){
-        
-        let max=0;
-        let player;
-        resultObj[year]={};
-        for(let manOfMatch in manOfTheMatchList[year]){
-            if(manOfTheMatchList[year][manOfMatch]>max){
-                max=manOfTheMatchList[year][manOfMatch];
-                player=manOfMatch;
-            }
-        }
-       
-        resultObj[year][player]=max;
-    }
-
-    return resultObj;
-
+  return resultList;
 }
-
-
-
 
 //write and dump to .json
-function dumpJsonToFile(result){
-    const jsonResult=JSON.stringify(result,null,2);
-    fs.writeFileSync("../public/output/mostManOfTheMatchYearWise.json",jsonResult,"utf-8");
+function dumpJsonToFile(result) {
+  const jsonResult = JSON.stringify(result, null, 2);
+  fs.writeFileSync(
+    "../public/output/mostManOfTheMatchYearWise.json",
+    jsonResult,
+    "utf-8"
+  );
 }
 
+function runAndDump() {
+  const mostManOfTheMatchYearWise1 = mostManOfTheMatchYearWise(matches);
 
-
-function runAndDump(){
-    const mostManOfTheMatchYearWise1=mostManOfTheMatchYearWise(matches);
-
-    dumpJsonToFile(mostManOfTheMatchYearWise1);
+  dumpJsonToFile(mostManOfTheMatchYearWise1);
 }
 
 runAndDump();

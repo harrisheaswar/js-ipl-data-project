@@ -1,42 +1,62 @@
 [
-  {
-    "bowler": "RN ten Doeschate",
-    "economy": 4
-  },
-  {
-    "bowler": "J Yadav",
-    "economy": 4.142857142857142
-  },
-  {
-    "bowler": "V Kohli",
-    "economy": 5.454545454545454
-  },
-  {
-    "bowler": "R Ashwin",
-    "economy": 5.846153846153846
-  },
-  {
-    "bowler": "S Nadeem",
-    "economy": 6.142857142857142
-  },
-  {
-    "bowler": "Parvez Rasool",
-    "economy": 6.200000000000001
-  },
-  {
-    "bowler": "MC Henriques",
-    "economy": 6.319999999999999
-  },
-  {
-    "bowler": "Z Khan",
-    "economy": 6.455172413793103
-  },
-  {
-    "bowler": "MA Starc",
-    "economy": 6.720930232558139
-  },
-  {
-    "bowler": "GB Hogg",
-    "economy": 6.857142857142857
-  }
+  [
+    "RN ten Doeschate",
+    {
+      "economy": 4
+    }
+  ],
+  [
+    "J Yadav",
+    {
+      "economy": 4.142857142857142
+    }
+  ],
+  [
+    "V Kohli",
+    {
+      "economy": 5.454545454545454
+    }
+  ],
+  [
+    "R Ashwin",
+    {
+      "economy": 5.846153846153846
+    }
+  ],
+  [
+    "S Nadeem",
+    {
+      "economy": 6.142857142857142
+    }
+  ],
+  [
+    "Parvez Rasool",
+    {
+      "economy": 6.200000000000001
+    }
+  ],
+  [
+    "MC Henriques",
+    {
+      "economy": 6.319999999999999
+    }
+  ],
+  [
+    "Z Khan",
+    {
+      "economy": 6.455172413793103
+    }
+  ],
+  [
+    "MA Starc",
+    {
+      "economy": 6.720930232558139
+    }
+  ],
+  [
+    "GB Hogg",
+    {
+      "economy": 6.857142857142857
+    }
+  ]
 ]
